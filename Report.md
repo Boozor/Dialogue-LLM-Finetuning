@@ -7,8 +7,6 @@ This project demonstrates the process of building and training a Large Language 
 2. Model Training
 3. Evaluation and Analysis
 
-Each phase is designed with specific goals in mind to ensure a robust and efficient training pipeline.
-
 ## 1. Data Preparation
 
 ### Steps Taken:
@@ -33,7 +31,7 @@ Each phase is designed with specific goals in mind to ensure a robust and effici
 
 ### Model & Toolkit:
 - **Model Choice: "distilgpt2"**  
-  We selected "distilgpt2" as it is a compact variant of GPT2, making it more feasible to fine-tune on a small dataset. Its proven language generation capabilities make it a good candidate for dialogue generation.
+  I selected "distilgpt2" as it is a compact variant of GPT2, making it more feasible to fine-tune on a small dataset. Its proven language generation capabilities make it a good candidate for dialogue generation.
 - **Framework:**  
   PyTorch was used because of its flexible tensor operations and integration with Hugging Face Transformers.
 - **Tokenizer:**  
@@ -41,7 +39,7 @@ Each phase is designed with specific goals in mind to ensure a robust and effici
 
 ### Training Process:
 - **PyTorch Training Loop:**  
-  A standard training loop is implemented which includes:
+  A standard training loop is implemented, which includes:
   - **Forward Pass:** Processing input sequences to generate logits over the vocabulary.
   - **Loss Calculation:** Using cross-entropy loss with the pad token ignored (to avoid penalizing the model for padded values).
   - **Backpropagation & Optimizer Step:** Utilizing the AdamW optimizer, which is effective for transformer models due to its weight decay regularization.
@@ -60,30 +58,26 @@ Each phase is designed with specific goals in mind to ensure a robust and effici
 
 ### Evaluation Components:
 - **Validation Loss:**  
-  The validation dataset is used to compute loss after each training epoch. This quantitative metric helps in understanding if the model is generalizing well to new data.
+  The validation dataset is used to compute the loss after each training epoch. This quantitative metric helps in understanding if the model is generalizing well to new data.
 - **Sample Generation:**  
   A sample dialogue is generated using a pre-defined prompt, enabling qualitative assessment of the model’s dialogue handling capabilities.
 
 ### Analysis of Model Strengths and Weaknesses:
-- **Strengths (Examples):**
-  - **Coherence:**  
-    Generated dialogues may show a good understanding of context, with responses that are logically consistent.
+- **Strengths:**
   - **Fluency:**  
-    The model may produce natural-sounding, grammatically correct text.
-- **Weaknesses (Examples):**
+    The model produces natural-sounding, grammatically correct text.
+- **Weaknesses:**
   - **Overfitting:**  
-    If the validation loss continues to lag behind training loss, it indicates that the model might be overfitting, especially on a small dataset.
+    The validation loss lags behind the training loss, this indicates that the model is overfitting on a small dataset.
   - **Lack of Diversity:**  
-    The generated dialogue might be too generic or repetitive if the training dataset does not contain a diverse range of examples.
+    The generated dialogue is too generic. This is because the training dataset does not contain a diverse range of examples.
   - **Context Understanding:**  
-    Sometimes, the model may lose track of speakers or context in longer conversations, indicating areas for data augmentation or architecture adjustment.
+    Sometimes, the model loses track of context, indicating areas for data augmentation.
+  - **Incoherence and Irrelevance:**  
+    The generated dialogue sometimes does not show a good understanding of context. This is a result of limited training data
 
 ### Rationale:
 - **Combining Quantitative and Qualitative Analysis:**  
   Validation loss provides an objective measure, while sample generation offers insights into practical performance and user experience.
 - **Iterative Improvement:**  
   Analyzing strengths and weaknesses allows for targeted improvements, such as better data augmentation or adjustments in model hyperparameters.
-
-## Conclusion
-
-Overall, this approach provides a comprehensive pipeline from data preparation to model evaluation. Each stage is carefully designed to address challenges specific to dialogue modeling and to ensure that the model not only learns the training data but also generalizes to new, unseen scenarios. Continued evaluation and refinement based on both quantitative and qualitative analyses will be essential in further improving the model's performance.
