@@ -3,13 +3,13 @@
 ## Overview
 This project demonstrates the complete process for building and training a large language model (LLM) on dialogue data. The process includes data preparation, model training, and evaluation. The key components include:
 
-- **Data Preparation (`prepare_data.py`)**:  
+- **Data Preparation**:  
   - Loads the JSON dataset from `llm_train_text.json`.  
   - Preprocesses dialogues by concatenating individual dialogue turns with speaker labels.  
   - Splits the data into training (80%) and validation (20%) sets.  
   - Rationale: Formatting dialogues as a continuous text string with speaker labels helps the model understand conversational context. Tokenization and fixed-length sequences (with padding/truncation) ensure consistency during training.
 
-- **Model Training (`train_llm.py`)**:  
+- **Model Training**:  
   - Uses the pre-trained `distilgpt2` model and tokenizer from Hugging Face for fine-tuning.  
   - Implements a PyTorch training loop covering the forward pass, loss computation (using cross-entropy loss with ignored pad tokens), backpropagation, optimizer (AdamW) steps, learning rate scheduling, validation, and checkpointing.  
   - Rationale: `distilgpt2` is a compact model ideal for quick fine-tuning and demonstration. AdamW and a learning rate scheduler help in stabilizing and accelerating training.
@@ -43,5 +43,5 @@ This project demonstrates the complete process for building and training a large
 4. **Evaluation**:
    Run the evaluation script to validate the model and generate outputs:
    ```bash
-   python evaluation.py
+   python evaluate.py
    ```
